@@ -1,0 +1,154 @@
+:root{
+    --primary-color: rgba(0,0,0,255);
+    --secondary-color: rgba(27,27,29,255);
+    --tertiary-color: rgba(227,227,232,255);
+    --text-color: rgba(255,255,255,255);
+    --secondary-text-color: rgba(149,148,152,255);
+    --primary-accent-color: #007aff;
+    --secondary-accent-color: #35c759;
+    --alt-color: #e1b53f;
+    --tertiary-accent-color: #e6352b;
+}
+
+*{
+    box-sizing: border-box;
+    
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: var(--primary-color);
+    color: var(--text-color);
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    height: 100%;
+}
+
+h1, p{
+    margin: 0;
+    font-weight: 400;
+}
+
+.modal-window{
+    background-color: rgba(0,0,0,.35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.input{
+    outline: none;
+    border: none;
+
+    border-radius: 9px;
+    padding: 1em;
+
+    margin-bottom: 1em;
+
+    background-color: #0000003b;
+    color: var(--text-color);
+}
+
+
+/* Nav */
+.app-nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+
+    background-color: var(--primary-color);
+}
+
+.nav-icon{
+    font-size: 2.2em;
+}
+
+/* Card Container*/
+.card-container{
+    margin-top: 1em;
+}
+.card-item{
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em 0 1em 1em;
+    border-radius: 15px;
+}
+
+.id-number-preview-text{
+    font-size: 1.4rem;
+}
+
+.item-first-half{
+    width: 50%;
+}
+.item-second-half{
+    display: flex;
+    justify-content: space-around;
+
+    width: 50%;
+}
+
+.item-icon{
+    font-size: 2rem;
+}
+
+/* Add modal */
+
+.add-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--secondary-color);
+    padding: 1em;
+    border-radius: 24px;
+    width: 80%;
+
+}
+.add-modal > p{
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+}
+
+.modal-btn-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    
+}
+
+.modal-btn{
+    outline: none;
+    border: none;
+    border-radius: 7px;
+}
+.modal-btn-text{
+    font-size: 4em;
+    
+}
+
+.modal-btn-back-color{
+    box-shadow: #e1b63f33 0px 0px 0px 3px;
+    background-color: #e1b63f54;
+    color: var(--alt-color);
+}
+.modal-btn-done-color{
+    box-shadow: #35c75948 0px 0px 0px 3px;
+    background-color: #35c7595d;
+    color: var(--secondary-accent-color);
+}
