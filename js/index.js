@@ -1,23 +1,12 @@
-const cardContainer = document.getElementById("card-container")
+import { addItem, loadItems, items } from "./items.js"
+import { cardContainer, addModal, modalWindow } from "./containers.js"
+
 const addButton = document.getElementById("add")
 const searchButton = document.getElementById("search")
 
 const modalBackBtn = document.getElementById("modal-back-btn")
 const modalDoneBtn = document.getElementById("modal-done-btn")
 
-const idNumber = document.getElementById("id-number")
-const curp = document.getElementById("curp")
-
-const addModal = document.getElementById("add-modal")
-const modalWindow = document.getElementById("modal-window")
-
-let items = [
-    // {
-    //     idNumber: 123456789,
-    //     name: "Pablo Cisneros",
-    //     curp: "aaaaaa"
-    // }
-]
 
 searchButton.addEventListener("click", () => {
     showWindow(1)
@@ -39,43 +28,23 @@ function showWindow(modal){
 
 }
 
+modalBackBtn.addEventListener("click" , () => {
+    addModal.classList.add("hide")
+    modalWindow.classList.add("hide")
+    addModal.classList.remove("show")
+    modalWindow.classList.remove("show")
+})
 
 modalDoneBtn.addEventListener("click", () => {
     addItem()
-})
-
-
-function addItem(){
-
-
-    let newItem = {
-        idNumber: idNumber.value,
-        name: "Pablo Cisneros",
-        curp: "aaaaaa"
-    }
-
-    items.push(newItem)
-
-    saveItems()
-    renderItems()
 
     addModal.classList.add("hide")
     modalWindow.classList.add("hide")
     addModal.classList.remove("show")
     modalWindow.classList.remove("show")
-}
-
-function loadItems(){
-    let loadedData = []
-    if (localStorage.getItem("itemsArray") == null || loadedData.length < 0) {
-    } else { 
-        loadedData = localStorage.getItem("itemsArray")
-        items = JSON.parse(loadedData)
-    }
-}
+})
 
 function renderItems(){
-
     loadItems()
 
     cardContainer.innerHTML = ""
@@ -84,16 +53,16 @@ function renderItems(){
         cardContainer.innerHTML += `
         <div class="card-item">
             <div class="item-first-half">
-                <p class="id-number-preview-text">${items[i].idNumber}</p>
+                <p class="id-number-preview-text">${items[i].requestNumber}</p>
             </div>
-            <div class="item-second-half">
-                <span class="material-symbols-outlined item-done-icon item-icon">
+            <div id="${items[i].id}" class="item-second-half">
+                <span id="s" class="material-symbols-outlined item-done-icon item-icon">
                     done
                 </span>
-                <span class="material-symbols-outlined item-bookmark-icon item-icon">
+                <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
                     bookmark
                 </span>
-                <span class="material-symbols-outlined item-erase-icon item-icon">
+                <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
                     close
                 </span>
             </div>
@@ -102,8 +71,6 @@ function renderItems(){
     }
 }
 
-function saveItems(){
-    localStorage.setItem("itemsArray", JSON.stringify(items))
-}
-
 renderItems()
+
+export { renderItems }
