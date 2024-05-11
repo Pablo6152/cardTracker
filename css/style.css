@@ -61,18 +61,40 @@ h1, p{
 /* Nav */
 .app-nav{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+    
+    
+    width: 95%;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1em 0;
 
     background-color: var(--primary-color);
 }
 
 .nav-icon{
     font-size: 2.2em;
+    width: 20%;
 }
+
+.nav-menu-icon{
+    text-align: left;
+}
+.nav-add-icon{
+    text-align: right;
+}
+
+.search{
+    background-color: var(--secondary-color);
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.3rem;
+
+    color: var(--text-color);
+    text-align: center;
+    padding: .2em 0;
+    width: 60%;
+}
+
 
 /* Card Container*/
 .card-container{
@@ -170,7 +192,7 @@ h1, p{
     justify-content: space-around;
     align-items: center;
 
-    background-color: rgba(0,0,0,.35);
+    background-color: var(--secondary-color);
     border-radius: 7px;
 
     width: 100%;
@@ -211,8 +233,9 @@ h1, p{
     margin-right: .7em;
 }
 
+
 .sidebar-btn-color{
-    background-color: rgba(0,0,0, .1);
+    background-color: var(--secondary-color);
     color: var(--text-color);
 }
 
@@ -225,8 +248,8 @@ h1, p{
 .sidebar-statistics-icon{
     color: var(--primary-accent-color);
 }
-.sidebar-settings-icon{
-    color: var(--text-color);
+.sidebar-delete-icon{
+    color: var(--tertiary-accent-color);
 }
 
 .sidebar-btn-container{

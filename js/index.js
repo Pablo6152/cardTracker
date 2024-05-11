@@ -4,7 +4,6 @@ import { cardContainer, addModal, modalWindow, sidebar } from "./containers.js"
 import { menu } from "./buttons.js"
 
 const addButton = document.getElementById("add")
-const searchButton = document.getElementById("search")
 
 const modalBackBtn = document.getElementById("modal-back-btn")
 const modalDoneBtn = document.getElementById("modal-done-btn")
