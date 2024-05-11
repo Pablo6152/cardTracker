@@ -16,24 +16,24 @@
 </head>
 <body>
 
-    <div id="modal-window" class="modal-window">        
+    <div id="modal-window" class="modal-window hide">        
 
-        <div class="add-modal">
+        <div id="add-modal" class="add-modal hide">
 
             <p class="modal-title">
                 Añadir solicitud
             </p>
 
-            <input type="text" class="input" id="id-number" placeholder="Numero de ID">
+            <input type="text" class="input" id="id-number" placeholder="Numero de ID" maxlength="9" value="305372098">
             <input type="text" class="input" id="curp" placeholder="Curp">
 
             <div class="modal-btn-container">
-                <button class="modal-btn modal-btn-back-color">
+                <button id="modal-back-btn" class="modal-btn modal-btn-back-color">
                     <span class="material-icons modal-btn-text">
                         arrow_back_ios_new
                     </span>
                 </button>
-                <button class="modal-btn modal-btn-done-color">
+                <button id="modal-done-btn" class="modal-btn modal-btn-done-color">
                     <span class="material-icons modal-btn-text">
                         done
                     </span>
@@ -41,6 +41,9 @@
             </div>
 
         </div>
+
+
+
 
     </div>
     

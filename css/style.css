@@ -33,11 +33,15 @@ h1, p{
     margin: 0;
     font-weight: 400;
 }
-
+.hide{
+    display: none;
+}
+.show{
+    display: flex;
+}
 .modal-window{
     background-color: rgba(0,0,0,.35);
-
-    display: flex;
+    
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -85,6 +89,7 @@ h1, p{
     background-color: var(--secondary-color);
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 1.3em;
     padding: 1em 0 1em 1em;
     border-radius: 15px;
 }
@@ -107,10 +112,18 @@ h1, p{
     font-size: 2rem;
 }
 
+.item-done-icon{
+    color: var(--secondary-accent-color);
+}
+.item-bookmark-icon{
+    color: var(--primary-accent-color);
+}
+.item-erase-icon{
+    color: var(--tertiary-accent-color);
+}
 /* Add modal */
 
 .add-modal{
-    display: flex;
     flex-direction: column;
     align-items: center;
 
