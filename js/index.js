@@ -65,7 +65,19 @@ function addItem(){
     modalWindow.classList.remove("show")
 }
 
+function loadItems(){
+    let loadedData = []
+    if (localStorage.getItem("itemsArray") == null || loadedData.length < 0) {
+    } else { 
+        loadedData = localStorage.getItem("itemsArray")
+        items = JSON.parse(loadedData)
+    }
+}
+
 function renderItems(){
+
+    loadItems()
+
     cardContainer.innerHTML = ""
 
     for (let i = 0; i < items.length; i++){
@@ -91,5 +103,7 @@ function renderItems(){
 }
 
 function saveItems(){
-    
+    localStorage.setItem("itemsArray", JSON.stringify(items))
 }
+
+renderItems()
