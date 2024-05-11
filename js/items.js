@@ -13,7 +13,6 @@ let items = [
 
 cardContainer.addEventListener("click", itemSelector)
 
-
 function itemSelector(e){
     // console.log(`
     // Item id=${e.target.parentNode.id}
@@ -33,12 +32,11 @@ function itemSelector(e){
         console.log(e.target.parentNode.id)
         removeItem(e.target.parentNode.id, 0)
     }
-
 }
-
 
 function saveItems(){
     localStorage.setItem("itemsArray", JSON.stringify(items))
+    console.log("Saved")
 }
 
 function loadItems(){
@@ -64,7 +62,5 @@ function addItem(){
     saveItems()
     renderItems()
 }
-
-
 
 export { addItem, loadItems, items, saveItems }

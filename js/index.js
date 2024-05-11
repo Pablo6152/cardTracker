@@ -1,5 +1,7 @@
 import { addItem, loadItems, items } from "./items.js"
-import { cardContainer, addModal, modalWindow } from "./containers.js"
+import { cardContainer, addModal, modalWindow, sidebar } from "./containers.js"
+
+import { menu } from "./buttons.js"
 
 const addButton = document.getElementById("add")
 const searchButton = document.getElementById("search")
@@ -8,9 +10,6 @@ const modalBackBtn = document.getElementById("modal-back-btn")
 const modalDoneBtn = document.getElementById("modal-done-btn")
 
 
-searchButton.addEventListener("click", () => {
-    showWindow(1)
-})
 addButton.addEventListener("click", () => {
     showWindow(2)
 })
@@ -19,10 +18,16 @@ function showWindow(modal){
 
     if(modal === 1){
         console.log("soon")
+        modalWindow.classList.add("show")
+        modalWindow.classList.remove("hide")
+        
+        sidebar.classList.add("show")
+        sidebar.classList.remove("hide")
+
     } else if (modal === 2){
         addModal.classList.add("show")
-        modalWindow.classList.add("show")
         addModal.classList.remove("hide")
+        modalWindow.classList.add("show")
         modalWindow.classList.remove("hide")
     }
 
@@ -73,4 +78,4 @@ function renderItems(){
 
 renderItems()
 
-export { renderItems }
+export { renderItems, showWindow }
