@@ -1,8 +1,7 @@
-import { renderItems } from "./index.js"
+import { render } from "./index.js"
 import { saveItems, items } from "./items.js"
 
 let itemsBin = []
-
 
 function removeItem(itemId, origin){
     let idSelected = parseInt(itemId)
@@ -25,7 +24,7 @@ function removeItem(itemId, origin){
     
             saveItems()
             saveItemsBin()
-            renderItems()
+            render(0)
         }
 
     if (!isNaN(parseInt(itemId)) && origin == 1){
@@ -46,7 +45,7 @@ function removeItem(itemId, origin){
     
             // saveFavoriteItems()
             saveItemsBin()
-            renderItems()
+            render()
     }
 }
 
@@ -63,4 +62,4 @@ function loadItemsBin(){
     }
 }
 
-export { removeItem }
+export { removeItem, itemsBin, loadItemsBin }

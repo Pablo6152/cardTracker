@@ -1,5 +1,6 @@
 import { addItem, loadItems, items } from "./items.js"
-import { cardContainer, addModal, modalWindow, sidebar } from "./containers.js"
+import { itemsBin, loadItemsBin } from "./itemsBin.js"
+import { appContainer, addModal, modalWindow, sidebar } from "./containers.js"
 
 import { menu } from "./buttons.js"
 
@@ -9,6 +10,12 @@ const modalBackBtn = document.getElementById("modal-back-btn")
 const modalDoneBtn = document.getElementById("modal-done-btn")
 
 
+let currentPage = 0
+
+function changePage(newPage){
+    currentPage = newPage
+}
+
 addButton.addEventListener("click", () => {
     showWindow(2)
 })
@@ -16,7 +23,6 @@ addButton.addEventListener("click", () => {
 function showWindow(modal){
 
     if(modal === 1){
-        console.log("soon")
         modalWindow.classList.add("show")
         modalWindow.classList.remove("hide")
         
@@ -32,6 +38,23 @@ function showWindow(modal){
 
 }
 
+function hideWindow(modal){
+    if(modal === 1){
+        modalWindow.classList.add("hide")
+        modalWindow.classList.remove("show")
+        
+        sidebar.classList.add("hide")
+        sidebar.classList.remove("show")
+
+    } else if (modal === 2){
+        addModal.classList.add("hide")
+        addModal.classList.remove("show")
+
+        modalWindow.classList.add("hide")
+        modalWindow.classList.remove("show")
+    }
+}
+
 modalBackBtn.addEventListener("click" , () => {
     addModal.classList.add("hide")
     modalWindow.classList.add("hide")
@@ -41,40 +64,86 @@ modalBackBtn.addEventListener("click" , () => {
 
 modalDoneBtn.addEventListener("click", () => {
     addItem()
-
-    addModal.classList.add("hide")
-    modalWindow.classList.add("hide")
-    addModal.classList.remove("show")
-    modalWindow.classList.remove("show")
+    hideWindow(2)
+    
 })
 
-function renderItems(){
-    loadItems()
+function render(Page){
 
-    cardContainer.innerHTML = ""
+    if(currentPage !== localStorage.getItem("currentPage")){
+        localStorage.setItem("currentPage", JSON.stringify(Page))
+    }
 
-    for (let i = 0; i < items.length; i++){
-        cardContainer.innerHTML += `
-        <div class="card-item">
-            <div class="item-first-half">
-                <p class="id-number-preview-text">${items[i].requestNumber}</p>
+
+    if(Page == 0){
+        loadItems()
+
+        appContainer.innerHTML = ""
+    
+        for (let i = 0; i < items.length; i++){
+            appContainer.innerHTML += `
+            <div class="card-item">
+                <div class="item-first-half">
+                    <p class="id-number-preview-text">${items[i].requestNumber}</p>
+                </div>
+                <div id="${items[i].id}" class="item-second-half">
+                    <span id="s" class="material-symbols-outlined item-done-icon item-icon">
+                        done
+                    </span>
+                    <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
+                        bookmark
+                    </span>
+                    <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
+                        close
+                    </span>
+                </div>
             </div>
-            <div id="${items[i].id}" class="item-second-half">
-                <span id="s" class="material-symbols-outlined item-done-icon item-icon">
-                    done
-                </span>
-                <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
-                    bookmark
-                </span>
-                <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
-                    close
-                </span>
+        `
+        }
+
+    } else if(Page == 1){
+        appContainer.innerHTML = ""
+
+        console.log("Approved items")
+    } else if(Page == 2){
+        appContainer.innerHTML = ""
+
+        console.log("Statistics")
+    } else if(Page == 3){
+        loadItemsBin()
+
+        appContainer.innerHTML = ""
+
+        for (let i = 0; i < itemsBin.length; i++){
+            appContainer.innerHTML += `
+            <div class="card-item">
+                <div class="item-first-half">
+                    <p class="id-number-preview-text">${itemsBin[i].requestNumber}</p>
+                </div>
+                <div id="${itemsBin[i].id}" class="item-second-half">
+                    <span id="s" class="material-symbols-outlined item-done-icon item-icon">
+                        done
+                    </span>
+                    <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
+                        bookmark
+                    </span>
+                    <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
+                        close
+                    </span>
+                </div>
             </div>
-        </div>
-    `
+        `
+        }
+
+        console.log("Deleted items")
     }
 }
 
-renderItems()
+if (localStorage.getItem("currentPage") !== null) {
+    currentPage = localStorage.getItem("currentPage")
+}
 
-export { renderItems, showWindow }
+
+render(currentPage)
+
+export { render, showWindow, hideWindow, changePage, currentPage }

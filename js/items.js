@@ -1,6 +1,6 @@
-import { renderItems } from "./index.js"
+import { render } from "./index.js"
 import { idNumberInput, curpInput } from "./input.js"
-import { modalWindow, addModal, cardContainer } from "./containers.js"
+import { modalWindow, addModal, appContainer } from "./containers.js"
 import { removeItem } from "./itemsBin.js"
 
 let items = [
@@ -11,7 +11,7 @@ let items = [
     // }
 ]
 
-cardContainer.addEventListener("click", itemSelector)
+appContainer.addEventListener("click", itemSelector)
 
 function itemSelector(e){
     // console.log(`
@@ -21,14 +21,11 @@ function itemSelector(e){
 
     if (e.target.id == "s"){
         // doneItems()
-        console.log("Sold")
         console.log(e.target.id)
     } else if (e.target.id == "b"){
-        console.log("Bookmark")
         console.log(e.target.id)
     } else if (e.target.id == "r"){
         // e.target.parentNode.id is the id of the item, 0 is the origin "Items"
-        console.log("remove")
         console.log(e.target.parentNode.id)
         removeItem(e.target.parentNode.id, 0)
     }
@@ -41,11 +38,13 @@ function saveItems(){
 
 function loadItems(){
     let loadedData = []
+
     if (localStorage.getItem("itemsArray") == null || loadedData.length < 0) {
-    } else { 
+    } else {
         loadedData = localStorage.getItem("itemsArray")
         items = JSON.parse(loadedData)
     }
+
 }
 
 function addItem(){
@@ -60,7 +59,7 @@ function addItem(){
     items.push(newItem)
 
     saveItems()
-    renderItems()
+    render(0)
 }
 
 export { addItem, loadItems, items, saveItems }
