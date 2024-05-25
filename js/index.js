@@ -1,6 +1,7 @@
 import { addItem, loadItems, items } from "./items.js"
 import { itemsBin, loadItemsBin } from "./itemsBin.js"
 import { appContainer, addModal, modalWindow, sidebar } from "./containers.js"
+import { loadApprovedItems, approvedItems } from "./itemsApproved.js"
 
 import { menu } from "./buttons.js"
 
@@ -9,6 +10,7 @@ const addButton = document.getElementById("add")
 const modalBackBtn = document.getElementById("modal-back-btn")
 const modalDoneBtn = document.getElementById("modal-done-btn")
 
+const appTitle = document.getElementById("app-title")
 
 let currentPage = 0
 
@@ -79,7 +81,8 @@ function render(Page){
         loadItems()
 
         appContainer.innerHTML = ""
-    
+        appTitle.textContent = "Solicitudes"
+
         for (let i = 0; i < items.length; i++){
             appContainer.innerHTML += `
             <div class="card-item">
@@ -102,17 +105,43 @@ function render(Page){
         }
 
     } else if(Page == 1){
+        loadApprovedItems()
+
         appContainer.innerHTML = ""
+        appTitle.textContent = "Aprobadas"
+
+        for (let i = 0; i < approvedItems.length; i++){
+            appContainer.innerHTML += `
+            <div class="card-item">
+                <div class="item-first-half">
+                    <p class="id-number-preview-text">${approvedItems[i].requestNumber}</p>
+                </div>
+                <div id="${approvedItems[i].id}" class="item-second-half">
+                    <span id="s" class="material-symbols-outlined item-done-icon item-icon">
+                        done
+                    </span>
+                    <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
+                        bookmark
+                    </span>
+                    <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
+                        close
+                    </span>
+                </div>
+            </div>
+        `
+        }
 
         console.log("Approved items")
     } else if(Page == 2){
         appContainer.innerHTML = ""
+        appTitle.textContent = "Estadisticas"
 
         console.log("Statistics")
     } else if(Page == 3){
         loadItemsBin()
 
         appContainer.innerHTML = ""
+        appTitle.textContent = "Papelera"
 
         for (let i = 0; i < itemsBin.length; i++){
             appContainer.innerHTML += `
@@ -121,12 +150,6 @@ function render(Page){
                     <p class="id-number-preview-text">${itemsBin[i].requestNumber}</p>
                 </div>
                 <div id="${itemsBin[i].id}" class="item-second-half">
-                    <span id="s" class="material-symbols-outlined item-done-icon item-icon">
-                        done
-                    </span>
-                    <span id="b" class="material-symbols-outlined item-bookmark-icon item-icon">
-                        bookmark
-                    </span>
                     <span id="r" class="material-symbols-outlined item-erase-icon item-icon">
                         close
                     </span>

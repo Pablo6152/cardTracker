@@ -27,26 +27,27 @@ function removeItem(itemId, origin){
             render(0)
         }
 
-    if (!isNaN(parseInt(itemId)) && origin == 1){
-            let itemsBinBuffer = []
-            itemsBinBuffer = favoriteItems.splice(parseInt(itemId), 1)
+        // Legacy code, used to determine the location where the items is coming from (Items or recycle bin)
+    // if (!isNaN(parseInt(itemId)) && origin == 1){
+    //         let itemsBinBuffer = []
+    //         itemsBinBuffer = favoriteItems.splice(parseInt(itemId), 1)
             
-            // console.log(favoriteItems)
+    //         // console.log(favoriteItems)
             
-            for (let i = 0; i < itemsBinBuffer.length; i++) {
-                itemsBinBuffer[i].id = itemsBin.length
-            }
+    //         for (let i = 0; i < itemsBinBuffer.length; i++) {
+    //             itemsBinBuffer[i].id = itemsBin.length
+    //         }
 
-            itemsBin.push(itemsBinBuffer[0])
+    //         itemsBin.push(itemsBinBuffer[0])
     
-            for (let i = idSelected; i < favoriteItems.length; i++) { 
-                favoriteItems[i].id--
-            }
+    //         for (let i = idSelected; i < favoriteItems.length; i++) { 
+    //             favoriteItems[i].id--
+    //         }
     
-            // saveFavoriteItems()
-            saveItemsBin()
-            render()
-    }
+    //         // saveFavoriteItems()
+    //         saveItemsBin()
+    //         render()
+    // }
 }
 
 function saveItemsBin(){
@@ -54,6 +55,7 @@ function saveItemsBin(){
 }
 
 function loadItemsBin(){
+    itemsBin = []
     let loadedData = []
     if (localStorage.getItem("itemsBinArray") == null || loadedData.length < 0) {
     } else { 

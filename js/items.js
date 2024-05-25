@@ -2,6 +2,7 @@ import { render } from "./index.js"
 import { idNumberInput, curpInput } from "./input.js"
 import { modalWindow, addModal, appContainer } from "./containers.js"
 import { removeItem } from "./itemsBin.js"
+import { approvedItem } from "./itemsApproved.js"
 
 let items = [
     // {
@@ -22,8 +23,12 @@ function itemSelector(e){
     if (e.target.id == "s"){
         // doneItems()
         console.log(e.target.id)
+        approvedItem(e.target.parentNode.id, 0)
+
     } else if (e.target.id == "b"){
         console.log(e.target.id)
+
+
     } else if (e.target.id == "r"){
         // e.target.parentNode.id is the id of the item, 0 is the origin "Items"
         console.log(e.target.parentNode.id)
@@ -37,6 +42,7 @@ function saveItems(){
 }
 
 function loadItems(){
+    items = []
     let loadedData = []
 
     if (localStorage.getItem("itemsArray") == null || loadedData.length < 0) {
